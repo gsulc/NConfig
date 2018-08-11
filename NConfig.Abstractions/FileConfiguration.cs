@@ -2,7 +2,7 @@
 
 namespace NConfig.Abstractions
 {
-    public abstract class FileConfiguration<TConfig> : IConfiguration<TConfig>
+    public abstract class FileConfiguration<TConfig> : IConfiguration<TConfig> where TConfig : class, new()
     {
         private readonly string _filePath;
 

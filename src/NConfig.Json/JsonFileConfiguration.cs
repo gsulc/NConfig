@@ -4,7 +4,7 @@ using System.IO;
 
 namespace NConfig.Json
 {
-    public class JsonFileConfiguration<TConfig> : FileConfiguration<TConfig>
+    public class JsonFileConfiguration<TConfig> : FileConfiguration<TConfig> where TConfig : class, new()
     {
         private static readonly JsonSerializer _serializer = new JsonSerializer();
 

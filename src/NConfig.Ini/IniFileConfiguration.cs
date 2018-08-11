@@ -4,7 +4,7 @@ using System.IO;
 
 namespace NConfig.Ini
 {
-    public class IniFileConfiguration<TConfig> : FileConfiguration<TConfig>
+    public class IniFileConfiguration<TConfig> : FileConfiguration<TConfig> where TConfig : class, new()
     {
         private static readonly IniSerializer _serializer = new IniSerializer(typeof(TConfig));
 

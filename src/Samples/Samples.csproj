@@ -42,16 +42,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExampleConfig.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Example.ini" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\NConfig.Abstractions\NConfig.Abstractions.csproj">
       <Project>{23d4984f-8dc8-4040-a1d7-4e1fec10f3f4}</Project>
       <Name>NConfig.Abstractions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NConfig.Ini\NConfig.Ini.csproj">
+      <Project>{80b33319-18e4-4b11-addc-0c91d0bb185f}</Project>
+      <Name>NConfig.Ini</Name>
     </ProjectReference>
     <ProjectReference Include="..\NConfig.Xml\NConfig.Xml.csproj">
       <Project>{0e24c1d7-e54f-4a59-b38e-b8055e0c0c64}</Project>
@@ -59,4 +65,7 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy $(ProjectDir)Example.ini $(TargetDir)</PostBuildEvent>
+  </PropertyGroup>
 </Project>
