@@ -24,42 +24,52 @@ namespace NConfig.Ini
         public void Serialize(object obj, string path)
         {
             _object = obj;
-            var iniData = ConstructIniData(obj);
-            Serialize(iniData, path);
+            var iniData = ConstructIniData();
+            Serialize(path, iniData);
         }
 
-        public IniData ConstructIniData(object obj)
+        private IniData ConstructIniData()
         {
-            throw new NotImplementedException();
-            //IniData data = new IniData();
-            //foreach (var section in _propertyInfos.Where(i => i.GetValue(obj) is IniSection))
-            //{
-            //    string sectionName = section.GetType().ToString();
-            //    data.Sections.AddSection(sectionName);
-            //    //data[sectionName].
-            //    foreach (var pi in GetPropertyInfosInSection(_propertyInfos, sectionName))
-            //    {
-            //        object value = pi.GetValue(obj);
-            //        data[sectionName].AddKey(pi.Name, value.ToString());
-            //    }
-            //}
-            //return data;
-        }
-
-        private IEnumerable<PropertyInfo> GetPropertyInfosInSection(
-            IEnumerable<PropertyInfo> propertyInfos,
-            string sectionName)
-        {
-            foreach (var propertyInfo in propertyInfos)
+            IniData data = new IniData();
+            foreach (var propertyInfo in _propertyInfos)
             {
-                var sa = propertyInfo.GetCustomAttribute<IniSectionAttribute>(true);
-                string name = sa.GetType().ToString();
-                if (sa != null && string.Equals(sectionName, name))
-                    yield return propertyInfo;
+                var sa = propertyInfo.GetCustomAttribute<IniSectionAttribute>();
+                if (sa != null)
+                {
+                    if (!data.Sections.ContainsSection(sa.Name))
+                        data.Sections.AddSection(sa.Name);
+                    var sectionValue = propertyInfo.GetValue(_object);
+                    foreach (var keyInfo in sectionValue.GetType().GetProperties())
+                    {
+                        var keyValue = keyInfo.GetValue(sectionValue);
+                        data[sa.Name].AddKey(keyInfo.Name, keyValue.ToString());
+                    }
+                }
+                else
+                {
+                    sa = propertyInfo.PropertyType.GetCustomAttribute<IniSectionAttribute>();
+                    if (sa != null)
+                    {
+                        if (!data.Sections.ContainsSection(sa.Name))
+                            data.Sections.AddSection(sa.Name);
+                        var sectionValue = propertyInfo.GetValue(_object);
+                        foreach (var keyInfo in sectionValue.GetType().GetProperties())
+                        {
+                            var keyValue = keyInfo.GetValue(sectionValue);
+                            data[sa.Name].AddKey(keyInfo.Name, keyValue.ToString());
+                        }
+                    }
+                    else
+                    {
+                        var value = propertyInfo.GetValue(_object);
+                        data.Global.AddKey(propertyInfo.Name, value.ToString());
+                    }
+                }
             }
+            return data;
         }
 
-        public void Serialize(string path, IniData data)
+        private void Serialize(string path, IniData data)
         {
             parser.WriteFile(path, data);
         }
@@ -70,7 +80,7 @@ namespace NConfig.Ini
             return Deserialize(data);
         }
 
-        public object Deserialize(IniData data)
+        private object Deserialize(IniData data)
         {
             _object = Activator.CreateInstance(_type);
             PopulateGlobalData(data);
@@ -82,7 +92,7 @@ namespace NConfig.Ini
         {
             foreach (var key in data.Global)
             {
-                var keyInfo = _propertyInfos.Where(i => string.Equals(i.Name, key.KeyName)).First();
+                var keyInfo = _type.GetProperty(key.KeyName);
                 var keyType = keyInfo.PropertyType;
                 object keyObject = Activator.CreateInstance(keyType);
                 object value = Convert.ChangeType(key.Value, keyType);
@@ -94,22 +104,24 @@ namespace NConfig.Ini
         {
             foreach (var section in data.Sections)
             {
-                var sectionInfo = GetSectionPropertInfo(section.SectionName);
-                var sectionType = sectionInfo.PropertyType;
-                object sectionObject = section.Deserialize(sectionType);
-                sectionInfo.SetValue(_object, sectionObject);
+                var sectionInfo = FindSectionProperty(section.SectionName);
+                if (sectionInfo != null)
+                {
+                    var sectionType = sectionInfo.PropertyType;
+                    object sectionObject = section.Deserialize(sectionType);
+                    sectionInfo.SetValue(_object, sectionObject);
+                }
             }
         }
 
-        public PropertyInfo GetSectionPropertInfo(string sectionName)
+        private PropertyInfo FindSectionProperty(string sectionName)
         {
             foreach (var propertyInfo in _propertyInfos)
             {
                 var sa = propertyInfo.GetCustomAttribute<IniSectionAttribute>();
                 if (sa == null)
                     sa = propertyInfo.PropertyType.GetCustomAttribute<IniSectionAttribute>();
-                string name = sa.Name;
-                if (sa != null && string.Equals(sectionName, name))
+                if (sa != null && string.Equals(sectionName, sa.Name))
                     return propertyInfo;
             }
             return null;

@@ -21,5 +21,10 @@ namespace NConfig.Ini
         {
             return section.Deserialize(typeof(TSection));
         }
+
+        //public static object Serialize(this SectionData section, object sectionObject)
+        //{
+
+        //}
     }
 }
