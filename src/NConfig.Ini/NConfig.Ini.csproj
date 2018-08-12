@@ -12,6 +12,9 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>A simple, lightweight serialization facade for reading and writing INI files to and from plain-old csharp objects.</Description>
     <Copyright>Gordon Sulc</Copyright>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>NConfigIniKey.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
   </PropertyGroup>
 
   <ItemGroup>

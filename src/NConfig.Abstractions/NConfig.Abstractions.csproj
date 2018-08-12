@@ -12,6 +12,9 @@
     <Description>Reduces dependencies.</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Copyright>Gordon Sulc</Copyright>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>NConfigKey.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
   </PropertyGroup>
 
 </Project>

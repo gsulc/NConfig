@@ -14,6 +14,9 @@
     <Version>0.5.0</Version>
     <Description>A simple, lightweight serialization facade for reading and writing XML files to and from plain-old csharp objects.</Description>
     <PackageTags>xml;configuration;config;poco;serialization;deserialization</PackageTags>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>NConfigXmlKey.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
   </PropertyGroup>
 
   <ItemGroup>
