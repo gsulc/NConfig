@@ -1,10 +1,7 @@
 ﻿using IniParser;
 using IniParser.Model;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-//using MadMilkman.Ini;
 
 namespace NConfig.Ini
 {
@@ -33,40 +30,39 @@ namespace NConfig.Ini
             IniData data = new IniData();
             foreach (var propertyInfo in _propertyInfos)
             {
-                var sa = propertyInfo.GetCustomAttribute<IniSectionAttribute>();
+                var sa = GetIniSectionAttribute(propertyInfo);
                 if (sa != null)
                 {
-                    if (!data.Sections.ContainsSection(sa.Name))
-                        data.Sections.AddSection(sa.Name);
-                    var sectionValue = propertyInfo.GetValue(_object);
-                    foreach (var keyInfo in sectionValue.GetType().GetProperties())
-                    {
-                        var keyValue = keyInfo.GetValue(sectionValue);
-                        data[sa.Name].AddKey(keyInfo.Name, keyValue.ToString());
-                    }
+                    var sectionData = CreateSectionData(sa.Name, propertyInfo);
+                    data.Sections.Add(sectionData);
                 }
                 else
                 {
-                    sa = propertyInfo.PropertyType.GetCustomAttribute<IniSectionAttribute>();
-                    if (sa != null)
-                    {
-                        if (!data.Sections.ContainsSection(sa.Name))
-                            data.Sections.AddSection(sa.Name);
-                        var sectionValue = propertyInfo.GetValue(_object);
-                        foreach (var keyInfo in sectionValue.GetType().GetProperties())
-                        {
-                            var keyValue = keyInfo.GetValue(sectionValue);
-                            data[sa.Name].AddKey(keyInfo.Name, keyValue.ToString());
-                        }
-                    }
-                    else
-                    {
-                        var value = propertyInfo.GetValue(_object);
-                        data.Global.AddKey(propertyInfo.Name, value.ToString());
-                    }
+                    var value = propertyInfo.GetValue(_object);
+                    data.Global.AddKey(propertyInfo.Name, value.ToString());
                 }
             }
             return data;
+        }
+
+        private IniSectionAttribute GetIniSectionAttribute(PropertyInfo propertyInfo)
+        {
+            var sa = propertyInfo.GetCustomAttribute<IniSectionAttribute>();
+            if (sa == null)
+                sa = propertyInfo.PropertyType.GetCustomAttribute<IniSectionAttribute>();
+            return sa;
+        }
+
+        private SectionData CreateSectionData(string name, PropertyInfo sectionInfo)
+        {
+            var sectionData = new SectionData(name);
+            var sectionValue = sectionInfo.GetValue(_object);
+            foreach (var keyInfo in sectionValue.GetType().GetProperties())
+            {
+                var keyValue = keyInfo.GetValue(sectionValue);
+                sectionData.Keys.AddKey(keyInfo.Name, keyValue.ToString());
+            }
+            return sectionData;
         }
 
         private void Serialize(string path, IniData data)
@@ -118,9 +114,7 @@ namespace NConfig.Ini
         {
             foreach (var propertyInfo in _propertyInfos)
             {
-                var sa = propertyInfo.GetCustomAttribute<IniSectionAttribute>();
-                if (sa == null)
-                    sa = propertyInfo.PropertyType.GetCustomAttribute<IniSectionAttribute>();
+                var sa = GetIniSectionAttribute(propertyInfo);
                 if (sa != null && string.Equals(sectionName, sa.Name))
                     return propertyInfo;
             }
