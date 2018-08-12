@@ -1,5 +1,4 @@
 ﻿using NConfig.Abstractions;
-using System;
 using System.IO;
 
 namespace NConfig.Ini

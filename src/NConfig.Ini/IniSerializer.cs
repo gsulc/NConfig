@@ -7,7 +7,7 @@ namespace NConfig.Ini
 {
     public class IniSerializer
     {
-        private static readonly FileIniDataParser parser = new FileIniDataParser();
+        private readonly FileIniDataParser _parser = new FileIniDataParser();
         private readonly Type _type;
         private readonly PropertyInfo[] _propertyInfos;
         private object _object;
@@ -45,6 +45,7 @@ namespace NConfig.Ini
             return data;
         }
 
+        // The Section Attribute can be applied to either a property or the class of the property.
         private IniSectionAttribute GetIniSectionAttribute(PropertyInfo propertyInfo)
         {
             var sa = propertyInfo.GetCustomAttribute<IniSectionAttribute>();
@@ -67,12 +68,12 @@ namespace NConfig.Ini
 
         private void Serialize(string path, IniData data)
         {
-            parser.WriteFile(path, data);
+            _parser.WriteFile(path, data);
         }
 
         public object Deserialize(string path)
         {
-            var data = parser.ReadFile(path);
+            var data = _parser.ReadFile(path);
             return Deserialize(data);
         }
 
