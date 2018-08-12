@@ -21,23 +21,23 @@ Uses the [Newtonsoft.Json library](https://github.com/JamesNK/Newtonsoft.Json) t
 ### INI
 Working on implicit sections. Currently, sections must be specified with the IniSectionAttribute. It can be applied to either the Property or the Class definiton. For the love of all that is good, pick one and stick with it!
 ```chsarp
-    public class ExampleConfig
-    {
-        public int ExampleGlobalInt { get; set; }
-        public Section1 Section1 { get; set; }
-        [IniSection("Section Two")]
-        public Section2 Section2 { get; set; }
-    }
-    [IniSection("Section One")]
-    public class Section1
-    {
-        public int Integer { get; set; }
-        public bool Boolean { get; set; }
-    }
-    
-    public class Section2
-    {
-        public double Double { get; set; }
-        public string String { get; set; }
-    }
+public class ExampleConfig
+{
+    public int ExampleGlobalInt { get; set; }
+    public Section1 Section1 { get; set; }
+    [IniSection("Section Two")]
+    public Section2 Section2 { get; set; }
+}
+[IniSection("Section One")]
+public class Section1
+{
+    public int Integer { get; set; }
+    public bool Boolean { get; set; }
+}
+  
+public class Section2
+{
+    public double Double { get; set; }
+    public string String { get; set; }
+}
 ```
