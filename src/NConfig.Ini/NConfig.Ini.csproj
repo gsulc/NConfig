@@ -2,6 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>net45</TargetFramework>
+    <Authors>Gordon Sulc</Authors>
+    <PackageProjectUrl>https://github.com/gsulc/NConfig</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/gsulc/NConfig/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/gsulc/NConfig</RepositoryUrl>
+    <PackageTags>ini;configuration;config;poco;serialization;deserialization</PackageTags>
+    <PackageReleaseNotes>beta</PackageReleaseNotes>
+    <Version>0.5.0</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>A simple, lightweight serialization facade for reading and writing INI files to and from plain-old csharp objects.</Description>
+    <Copyright>Gordon Sulc</Copyright>
   </PropertyGroup>
 
   <ItemGroup>

@@ -12,7 +12,7 @@ namespace NConfig.Abstractions
         }
 
         public string FilePath => _filePath;
-        public string FullPath => Path.GetFullPath(_filePath); // Requires netstandard1.3+
+        public string FullPath => Path.GetFullPath(_filePath);
         public string FileName => Path.GetFileName(_filePath);
         public string FileExtension => Path.GetExtension(_filePath);
 

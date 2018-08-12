@@ -2,6 +2,16 @@
 
   <PropertyGroup>
     <TargetFrameworks>net20;netstandard1.3</TargetFrameworks>
+    <PackageLicenseUrl>https://github.com/gsulc/NConfig/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/gsulc/NConfig</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/gsulc/NConfig</RepositoryUrl>
+    <PackageTags>configuration;config;serialization;deserialization</PackageTags>
+    <Authors>Gordon Sulc</Authors>
+    <Version>0.5.0</Version>
+    <PackageReleaseNotes>beta</PackageReleaseNotes>
+    <Description>Reduces dependencies.</Description>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Copyright>Gordon Sulc</Copyright>
   </PropertyGroup>
 
 </Project>
