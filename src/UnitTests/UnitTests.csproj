@@ -58,8 +58,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\NConfig.Abstractions\NConfig.Abstractions.csproj">
-      <Project>{23d4984f-8dc8-4040-a1d7-4e1fec10f3f4}</Project>
+    <ProjectReference Include="..\NConfig.Abstractions\NConfig.Abstractions.csproj">
+      <Project>{d849e797-a141-4cc2-bfaf-c57a60926338}</Project>
       <Name>NConfig.Abstractions</Name>
     </ProjectReference>
     <ProjectReference Include="..\NConfig.Ini\NConfig.Ini.csproj">
