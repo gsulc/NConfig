@@ -43,17 +43,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExampleConfig.cs" />
+    <Compile Include="Person.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Example.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Example.ini" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NConfig.Abstractions\NConfig.Abstractions.csproj">
       <Project>{d849e797-a141-4cc2-bfaf-c57a60926338}</Project>
       <Name>NConfig.Abstractions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NConfig.Csv\NConfig.Csv.csproj">
+      <Project>{281b72a1-c4ea-4a87-aa03-68b572b8e6d6}</Project>
+      <Name>NConfig.Csv</Name>
     </ProjectReference>
     <ProjectReference Include="..\NConfig.Ini\NConfig.Ini.csproj">
       <Project>{80b33319-18e4-4b11-addc-0c91d0bb185f}</Project>

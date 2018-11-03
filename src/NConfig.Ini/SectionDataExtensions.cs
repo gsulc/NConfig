@@ -17,9 +17,9 @@ namespace NConfig.Ini
             return sectionObject;
         }
 
-        public static object Deserialize<TSection>(this SectionData section)
+        public static TSection Deserialize<TSection>(this SectionData section) where TSection : class, new()
         {
-            return section.Deserialize(typeof(TSection));
+            return (TSection)section.Deserialize(typeof(TSection));
         }
 
         //public static object Serialize(this SectionData section, object sectionObject)
