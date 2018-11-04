@@ -10,8 +10,8 @@ namespace Samples
     {
         static void Main(string[] args)
         {
-            IConfiguration<List<Person>> peopleConfig = 
-                new CsvFileConfiguration<List<Person>>("Example.csv");
+            IListConfiguration<Person> peopleConfig = 
+                new CsvFileConfiguration<Person>("Example.csv");
             List<Person> people = peopleConfig.Load();
             foreach (var person in people)
                 Console.WriteLine(person);

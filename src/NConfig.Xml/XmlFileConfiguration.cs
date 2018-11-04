@@ -4,7 +4,8 @@ using System.Xml.Serialization;
 
 namespace NConfig.Xml
 {
-    public class XmlFileConfiguration<TConfig> : FileConfiguration<TConfig>, IConfiguration<TConfig> where TConfig : class, new()
+    public class XmlFileConfiguration<TConfig> : 
+        FileConfiguration<TConfig>, IConfiguration<TConfig> where TConfig : class, new()
     {
         private static readonly XmlSerializer _serializer = new XmlSerializer(typeof(TConfig));
 
@@ -19,7 +20,7 @@ namespace NConfig.Xml
             return new XmlFileConfiguration<TConfig>(path);
         }
 
-        public override TConfig Load()
+        public TConfig Load()
         {
             return Load(FilePath);
         }
@@ -32,7 +33,7 @@ namespace NConfig.Xml
             }
         }
 
-        public override void Save(TConfig value)
+        public void Save(TConfig value)
         {
             Save(value, FilePath);
         }

@@ -9,19 +9,21 @@ using System.Text;
 
 namespace NConfig.Csv
 {
-    public class CsvFileConfiguration<TConfig> : FileConfiguration<TConfig>
-        where TConfig : class, IList, new()
+    public class CsvFileConfiguration<TConfig> : 
+        FileConfiguration<TConfig>, IListConfiguration<TConfig>
+        where TConfig : class, new()
     {
-        private Type _innerType = typeof(TConfig).GetGenericArguments().First();
-        private PropertyInfo[] _innerProperties;
+        private PropertyInfo[] _configProperties;
 
         public CsvFileConfiguration(string filePath)
             : base(filePath)
         {
         }
 
-        private PropertyInfo[] InnerProperties => 
-            _innerProperties ?? (_innerProperties = _innerType.GetProperties());
+        private PropertyInfo[] ConfigProperties => 
+            _configProperties ?? (_configProperties = typeof(TConfig).GetProperties());
+
+        public bool UsingHeader { get; set; } = true;
 
         public static CsvFileConfiguration<TConfig> FromDirectory(string directory)
         {
@@ -29,14 +31,14 @@ namespace NConfig.Csv
             return new CsvFileConfiguration<TConfig>(path);
         }
 
-        public override TConfig Load()
+        public List<TConfig> Load()
         {
-            var list = Activator.CreateInstance(typeof(TConfig)) as IList;
+            var list = new List<TConfig>();
             var lines = File.ReadAllLines(FilePath);
             foreach (var line in lines)
             {
                 var elements = line.Split(',');
-                if (line == lines.First())
+                if (UsingHeader && line == lines.First())
                 {
                     ParseHeader(line);
                 }
@@ -46,41 +48,41 @@ namespace NConfig.Csv
                     list.Add(obj);
                 }
             }
-            return list as TConfig;
+            return list;
         }
 
-        // preserves the order of the properties
+        // preserves the order of the properties in the file
         private void ParseHeader(string line)
         {
             var elements = line.Split(',');
-            var innerProperties = _innerType.GetProperties();
-            _innerProperties = new PropertyInfo[innerProperties.Length];
+            var properties = typeof(TConfig).GetProperties();
+            _configProperties = new PropertyInfo[properties.Length];
             for (int i = 0; i < elements.Length; ++i)
             {
                 var name = elements[i];
-                _innerProperties[i] = innerProperties.Where(p => p.Name == name).First();
+                _configProperties[i] = properties.Where(p => p.Name == name).First();
             }
         }
 
-        private object CreateObject(string[] propertyStringValues)
+        private TConfig CreateObject(string[] propertyStringValues)
         {
-            var obj = Activator.CreateInstance(_innerType);
-            for (int i = 0; i < _innerProperties.Length; ++i)
+            var obj = (TConfig)Activator.CreateInstance(typeof(TConfig));
+            for (int i = 0; i < ConfigProperties.Length; ++i)
             {
                 var stringValue = propertyStringValues[i];
-                var type = _innerProperties[i].PropertyType;
+                var type = ConfigProperties[i].PropertyType;
                 var value = Convert.ChangeType(stringValue, type);
-                _innerProperties[i].SetValue(obj, value);
+                ConfigProperties[i].SetValue(obj, value);
             }
             return obj;
         }
 
-        public override void Save(TConfig value)
+        public void Save(List<TConfig> list)
         {
-            var list = value as IList;
             using (var stream = new StreamWriter(FullPath))
             {
-                stream.WriteLine(GetHeader());
+                if (UsingHeader)
+                    stream.WriteLine(GetHeader());
                 foreach (var item in list)
                     stream.WriteLine(CreateItemLine(item));
             }
@@ -88,12 +90,12 @@ namespace NConfig.Csv
 
         private string GetHeader()
         {
-            return BuildLine(InnerProperties.Select(p => p.Name));
+            return BuildLine(ConfigProperties.Select(p => p.Name));
         }
 
         private string CreateItemLine(object item)
         {
-            var values = InnerProperties.Select(p => p.GetValue(item).ToString());
+            var values = ConfigProperties.Select(p => p.GetValue(item).ToString());
             return BuildLine(values);
         }
 

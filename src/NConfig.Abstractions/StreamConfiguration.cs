@@ -1,10 +1,8 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace NConfig.Abstractions
 {
-    public abstract class StreamConfiguration<TConfig> : IConfiguration<TConfig>, IDisposable 
-        where TConfig : class
+    public abstract class StreamConfiguration<TConfig>
     {
         public StreamConfiguration(Stream stream)
         {
@@ -12,10 +10,6 @@ namespace NConfig.Abstractions
         }
 
         protected Stream Stream { get; private set; }
-
-        public abstract TConfig Load();
-
-        public abstract void Save(TConfig value);
 
         #region IDisposable Support
         private bool _disposed = false; // To detect redundant calls

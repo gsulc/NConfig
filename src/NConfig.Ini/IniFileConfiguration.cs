@@ -3,7 +3,8 @@ using System.IO;
 
 namespace NConfig.Ini
 {
-    public class IniFileConfiguration<TConfig> : FileConfiguration<TConfig> where TConfig : class, new()
+    public class IniFileConfiguration<TConfig> : 
+        FileConfiguration<TConfig>, IConfiguration<TConfig> where TConfig : class, new()
     {
         private static readonly IniSerializer _serializer = new IniSerializer(typeof(TConfig));
 
@@ -18,7 +19,7 @@ namespace NConfig.Ini
             return new IniFileConfiguration<TConfig>(path);
         }
 
-        public override TConfig Load()
+        public TConfig Load()
         {
             return Load(FilePath);
         }
@@ -28,7 +29,7 @@ namespace NConfig.Ini
             return (TConfig)_serializer.Deserialize(path);
         }
 
-        public override void Save(TConfig value)
+        public void Save(TConfig value)
         {
             Save(value, FilePath);
         }

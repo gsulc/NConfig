@@ -4,19 +4,20 @@ using System.Xml.Serialization;
 
 namespace NConfig.Xml
 {
-    public class XmlStreamConfiguration<TConfig> : StreamConfiguration<TConfig> where TConfig : class
+    public class XmlStreamConfiguration<TConfig> : 
+        StreamConfiguration<TConfig>, IConfiguration<TConfig> where TConfig : class, new()
     {
         private static readonly XmlSerializer _serializer = new XmlSerializer(typeof(TConfig));
 
         public XmlStreamConfiguration(Stream stream) : base(stream)
         { }
 
-        public override TConfig Load()
+        public TConfig Load()
         {
             return (TConfig)_serializer.Deserialize(Stream);
         }
 
-        public override void Save(TConfig value)
+        public void Save(TConfig value)
         {
             _serializer.Serialize(Stream, value);
         }

@@ -2,7 +2,7 @@
 
 namespace NConfig.Abstractions
 {
-    public abstract class FileConfiguration<TConfig> : IConfiguration<TConfig> where TConfig : class, new()
+    public abstract class FileConfiguration<TConfig>
     {
         private readonly string _filePath;
 
@@ -15,8 +15,5 @@ namespace NConfig.Abstractions
         public string FullPath => Path.GetFullPath(_filePath);
         public string FileName => Path.GetFileName(_filePath);
         public string FileExtension => Path.GetExtension(_filePath);
-
-        public abstract TConfig Load();
-        public abstract void Save(TConfig value);
     }
 }

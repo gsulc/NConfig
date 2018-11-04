@@ -4,7 +4,8 @@ using System.IO;
 
 namespace NConfig.Json
 {
-    public class JsonFileConfiguration<TConfig> : FileConfiguration<TConfig> where TConfig : class, new()
+    public class JsonFileConfiguration<TConfig> : 
+        FileConfiguration<TConfig>, IConfiguration<TConfig> where TConfig : class, new()
     {
         private static readonly JsonSerializer _serializer = new JsonSerializer();
 
@@ -19,7 +20,7 @@ namespace NConfig.Json
             return new JsonFileConfiguration<TConfig>(path);
         }
 
-        public override TConfig Load()
+        public TConfig Load()
         {
             return Load(FilePath);
         }
@@ -33,7 +34,7 @@ namespace NConfig.Json
             }
         }
 
-        public override void Save(TConfig value)
+        public void Save(TConfig value)
         {
             Save(value, FilePath);
         }
