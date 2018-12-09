@@ -25,9 +25,9 @@ namespace NConfig.Xml
             return Load(FilePath);
         }
 
-        public static TConfig Load(string path)
+        public static TConfig Load(string filePath)
         {
-            using (var stream = new StreamReader(path))
+            using (var stream = new StreamReader(filePath))
             {
                 return (TConfig)_serializer.Deserialize(stream);
             }
@@ -38,9 +38,9 @@ namespace NConfig.Xml
             Save(value, FilePath);
         }
 
-        public static void Save(TConfig value, string path)
+        public static void Save(TConfig value, string filePath)
         {
-            using (var stream = new StreamWriter(path))
+            using (var stream = new StreamWriter(filePath))
             {
                 _serializer.Serialize(stream, value);
             }

@@ -1,8 +1,9 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace NConfig.Abstractions
 {
-    public abstract class StreamConfiguration<TConfig>
+    public abstract class StreamConfiguration<TConfig> : IDisposable
     {
         public StreamConfiguration(Stream stream)
         {

@@ -1,6 +1,5 @@
 ﻿using NConfig.Abstractions;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -13,21 +12,18 @@ namespace NConfig.Csv
         FileConfiguration<TConfig>, IListConfiguration<TConfig>
         where TConfig : class, new()
     {
-        private PropertyInfo[] _configProperties;
+        private PropertyInfo[] _configProperties = typeof(TConfig).GetProperties();
 
         public CsvFileConfiguration(string filePath)
             : base(filePath)
         {
         }
 
-        private PropertyInfo[] ConfigProperties => 
-            _configProperties ?? (_configProperties = typeof(TConfig).GetProperties());
-
         public bool UsingHeader { get; set; } = true;
 
         public static CsvFileConfiguration<TConfig> FromDirectory(string directory)
         {
-            string path = Path.Combine(directory, $"{nameof(TConfig)}.csv");
+            string path = Path.Combine(directory, $"{nameof(TConfig)}s.csv");
             return new CsvFileConfiguration<TConfig>(path);
         }
 
@@ -67,12 +63,12 @@ namespace NConfig.Csv
         private TConfig CreateObject(string[] propertyStringValues)
         {
             var obj = (TConfig)Activator.CreateInstance(typeof(TConfig));
-            for (int i = 0; i < ConfigProperties.Length; ++i)
+            for (int i = 0; i < _configProperties.Length; ++i)
             {
                 var stringValue = propertyStringValues[i];
-                var type = ConfigProperties[i].PropertyType;
+                var type = _configProperties[i].PropertyType;
                 var value = Convert.ChangeType(stringValue, type);
-                ConfigProperties[i].SetValue(obj, value);
+                _configProperties[i].SetValue(obj, value);
             }
             return obj;
         }
@@ -90,12 +86,12 @@ namespace NConfig.Csv
 
         private string GetHeader()
         {
-            return BuildLine(ConfigProperties.Select(p => p.Name));
+            return BuildLine(_configProperties.Select(p => p.Name));
         }
 
         private string CreateItemLine(object item)
         {
-            var values = ConfigProperties.Select(p => p.GetValue(item).ToString());
+            var values = _configProperties.Select(p => p.GetValue(item).ToString());
             return BuildLine(values);
         }
 

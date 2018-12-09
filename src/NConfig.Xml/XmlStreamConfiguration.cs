@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 
 namespace NConfig.Xml
 {
-    public class XmlStreamConfiguration<TConfig> : 
+    public class XmlStreamConfiguration<TConfig> :
         StreamConfiguration<TConfig>, IConfiguration<TConfig> where TConfig : class, new()
     {
         private static readonly XmlSerializer _serializer = new XmlSerializer(typeof(TConfig));

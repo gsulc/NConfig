@@ -4,16 +4,14 @@ namespace NConfig.Abstractions
 {
     public abstract class FileConfiguration<TConfig>
     {
-        private readonly string _filePath;
-
         public FileConfiguration(string path)
         {
-            _filePath = path;
+            FilePath = path;
         }
 
-        public string FilePath => _filePath;
-        public string FullPath => Path.GetFullPath(_filePath);
-        public string FileName => Path.GetFileName(_filePath);
-        public string FileExtension => Path.GetExtension(_filePath);
+        public string FilePath { get; protected set; }
+        public string FullPath => Path.GetFullPath(FilePath);
+        public string FileName => Path.GetFileName(FilePath);
+        public string FileExtension => Path.GetExtension(FilePath);
     }
 }
