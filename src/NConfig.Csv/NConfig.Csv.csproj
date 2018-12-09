@@ -1,7 +1,22 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>net45;netstandard2.0</TargetFrameworks>
+    <PackageLicenseUrl>https://github.com/gsulc/NConfig/blob/master/LICENSE</PackageLicenseUrl>
+    <Authors>Gordon Sulc</Authors>
+    <PackageProjectUrl>https://github.com/gsulc/NConfig</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/gsulc/NConfig</RepositoryUrl>
+    <PackageReleaseNotes>beta</PackageReleaseNotes>
+    <Copyright>Gordon Sulc</Copyright>
+    <AssemblyVersion>0.5.1.0</AssemblyVersion>
+    <FileVersion>0.5.1.0</FileVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>0.5.1</Version>
+    <Description>A simple, lightweight serialization facade for reading and writing CSV files to and from plain-old csharp objects.</Description>
+    <PackageTags>csv;configuration;config;poco;serialization;deserialization</PackageTags>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>NConfigCsvKey.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
   </PropertyGroup>
 
   <ItemGroup>

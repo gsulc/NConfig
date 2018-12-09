@@ -7,7 +7,7 @@
     <RepositoryUrl>https://github.com/gsulc/NConfig</RepositoryUrl>
     <PackageTags>configuration;config;serialization;deserialization</PackageTags>
     <Authors>Gordon Sulc</Authors>
-    <Version>0.5.0</Version>
+    <Version>0.5.1</Version>
     <PackageReleaseNotes>beta</PackageReleaseNotes>
     <Description>Reduces dependencies.</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
