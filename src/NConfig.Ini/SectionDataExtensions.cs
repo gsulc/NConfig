@@ -1,4 +1,5 @@
 ﻿using IniParser.Model;
+using NConfig.Abstractions;
 using System;
 
 namespace NConfig.Ini
@@ -11,7 +12,7 @@ namespace NConfig.Ini
             foreach (var key in section.Keys)
             {
                 var keyInfo = sectionType.GetProperty(key.KeyName);
-                object value = Convert.ChangeType(key.Value, keyInfo.PropertyType);
+                object value = ExtendedConvert.ChangeType(key.Value, keyInfo.PropertyType);
                 keyInfo.SetValue(sectionObject, value);
             }
             return sectionObject;

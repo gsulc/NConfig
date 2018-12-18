@@ -48,6 +48,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConvertTest.cs" />
     <Compile Include="GoodIniConfig.cs" />
     <Compile Include="IniFileTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -12,10 +12,12 @@ namespace Samples
         [IniSection("Ultimate")]
         public Ultimate Ultimate { get; set; }
 
-        
         public RythmSection RythmSection { get; set; }
 
         public double ExampleDouble { get; set; }
+
+        [IniSection("Mouse")]
+        public Mouse Mouse { get; set; }
     }
     
     public class Ultimate
@@ -41,7 +43,16 @@ namespace Samples
     public class Mouse
     {
         public string Name { get; set; }
-        public string Color { get; set; }
+        public Color Color { get; set; }
         public int Age { get; set; }
+    }
+
+    public enum Color
+    {
+        White,
+        Black,
+        Red,
+        Green,
+        Blue
     }
 }

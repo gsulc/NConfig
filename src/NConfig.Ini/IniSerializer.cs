@@ -1,5 +1,6 @@
 ﻿using IniParser;
 using IniParser.Model;
+using NConfig.Abstractions;
 using System;
 using System.Reflection;
 
@@ -92,7 +93,7 @@ namespace NConfig.Ini
                 var keyInfo = _type.GetProperty(key.KeyName);
                 var keyType = keyInfo.PropertyType;
                 object keyObject = Activator.CreateInstance(keyType);
-                object value = Convert.ChangeType(key.Value, keyType);
+                object value = ExtendedConvert.ChangeType(key.Value, keyType);
                 keyInfo.SetValue(_object, value);
             }
         }

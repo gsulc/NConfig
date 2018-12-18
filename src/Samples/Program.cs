@@ -10,15 +10,21 @@ namespace Samples
     {
         static void Main(string[] args)
         {
-            IListConfiguration<Person> peopleConfig = 
+            //CsvExample();
+            IniExample();
+            Console.ReadKey();
+        }
+
+        static void CsvExample()
+        {
+            IListConfiguration<Person> peopleConfig =
                 new CsvFileConfiguration<Person>("Example.csv");
             List<Person> people = peopleConfig.Load();
             foreach (var person in people)
                 Console.WriteLine(person);
-            Console.ReadKey();
         }
 
-        void IniExample()
+        static void IniExample()
         {
             IConfiguration<ExampleConfig> configuration =
                 new IniFileConfiguration<ExampleConfig>("Example.ini");
