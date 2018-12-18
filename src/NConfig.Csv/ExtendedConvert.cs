@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NConfig.Abstractions
+namespace NConfig.Csv
 {
     public static class ExtendedConvert
     {

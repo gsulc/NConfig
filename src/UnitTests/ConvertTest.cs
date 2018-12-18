@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NConfig.Abstractions;
+using NConfig.Ini;
 
 namespace UnitTests
 {

@@ -1,5 +1,4 @@
 ﻿using IniParser.Model;
-using NConfig.Abstractions;
 using System;
 
 namespace NConfig.Ini

@@ -1,6 +1,5 @@
 ﻿using IniParser;
 using IniParser.Model;
-using NConfig.Abstractions;
 using System;
 using System.Reflection;
 
