@@ -56,6 +56,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Files\BadIntConfig.ini" />
+    <None Include="Files\GoodIniConfig.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

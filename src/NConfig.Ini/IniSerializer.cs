@@ -90,8 +90,8 @@ namespace NConfig.Ini
             foreach (var key in data.Global)
             {
                 var keyInfo = _type.GetProperty(key.KeyName);
+
                 var keyType = keyInfo.PropertyType;
-                object keyObject = Activator.CreateInstance(keyType);
                 object value = ExtendedConvert.ChangeType(key.Value, keyType);
                 keyInfo.SetValue(_object, value);
             }

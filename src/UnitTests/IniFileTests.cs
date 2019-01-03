@@ -22,5 +22,12 @@ namespace UnitTests
                 Console.WriteLine(e);
             }
         }
+
+        [TestMethod]
+        public void LoadGoodIniFile()
+        {
+            var config = new IniFileConfiguration<GoodIniConfig>(@"Files\\GoodIniConfig.ini");
+            var goodConfig = config.Load();
+        }
     }
 }
