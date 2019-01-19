@@ -10,6 +10,8 @@ namespace NConfig.Ini
                 return (value is string) ?
                     Enum.Parse(type, value as string) :
                     Enum.ToObject(type, value);
+            else if (type == typeof(TimeSpan) && value is string)
+                return TimeSpan.Parse(value as string);
             else
                 return Convert.ChangeType(value, type);
         }

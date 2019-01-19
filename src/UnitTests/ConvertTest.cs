@@ -27,5 +27,13 @@ namespace UnitTests
             var value = ExtendedConvert.ChangeType(2, typeof(TestEnum));
             Assert.AreEqual(TestEnum.Two, value);
         }
+
+        [TestMethod]
+        public void TestTimespanCast()
+        {
+            var ts = TimeSpan.FromSeconds(11);
+            var test = ExtendedConvert.ChangeType("00:00:00:11", typeof(TimeSpan));
+            Assert.AreEqual(ts, test);
+        }
     }
 }
