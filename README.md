@@ -18,7 +18,13 @@ Uses the [ini-parser library](https://github.com/rickyah/ini-parser) to do the b
 Uses the [Newtonsoft.Json library](https://github.com/JamesNK/Newtonsoft.Json) to the do Json file serialization.
 
 # Examples
-### INI
+### Usage
+```csharp
+var configuration = new IniFileConfiguration<ExampleConfig>("Example.ini");
+ExampleConfig example = configuration.Load();
+```
+
+### INI Definition
 Working on implicit sections. Currently, sections must be specified with the IniSectionAttribute. It can be applied to either the Property or the Class definiton. For the love of all that is good, pick one and stick with it!
 ```chsarp
 public class ExampleConfig
