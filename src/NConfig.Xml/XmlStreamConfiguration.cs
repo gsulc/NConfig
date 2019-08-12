@@ -1,5 +1,4 @@
-﻿using NConfig.Abstractions;
-using System.IO;
+﻿using System.IO;
 using System.Xml.Serialization;
 
 namespace NConfig.Xml

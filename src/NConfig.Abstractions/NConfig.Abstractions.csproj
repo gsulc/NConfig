@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>net20;netstandard1.3</TargetFrameworks>
@@ -15,6 +15,7 @@
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>NConfigKey.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
+    <RootNamespace>NConfig</RootNamespace>
   </PropertyGroup>
 
 </Project>

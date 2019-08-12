@@ -1,4 +1,4 @@
-﻿using NConfig.Abstractions;
+﻿using System;
 using System.IO;
 
 namespace NConfig.Ini
@@ -26,7 +26,14 @@ namespace NConfig.Ini
 
         public static TConfig Load(string path)
         {
-            return (TConfig)_serializer.Deserialize(path);
+            try
+            {
+                return (TConfig)_serializer.Deserialize(path);
+            }
+            catch (Exception e)
+            {
+                throw new ConfigFileLoadException(path, e);
+            }
         }
 
         public void Save(TConfig value)

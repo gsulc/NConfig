@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace NConfig.Abstractions
+namespace NConfig
 {
     public abstract class FileConfiguration<TConfig>
     {

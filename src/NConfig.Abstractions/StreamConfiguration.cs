@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace NConfig.Abstractions
+namespace NConfig
 {
     public abstract class StreamConfiguration<TConfig> : IDisposable
     {

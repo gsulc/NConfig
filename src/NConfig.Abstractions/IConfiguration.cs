@@ -1,4 +1,4 @@
-﻿namespace NConfig.Abstractions
+﻿namespace NConfig
 {
     public interface IConfiguration<TConfig> where TConfig : class, new()
     {

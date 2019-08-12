@@ -1,5 +1,5 @@
-﻿using NConfig.Abstractions;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using System;
 using System.IO;
 
 namespace NConfig.Json
@@ -27,10 +27,17 @@ namespace NConfig.Json
 
         public static TConfig Load(string path)
         {
-            using (var stream = new StreamReader(path))
-            using (var jsonReader = new JsonTextReader(stream))
+            try
             {
-                return (TConfig)_serializer.Deserialize(jsonReader);
+                using (var stream = new StreamReader(path))
+                using (var jsonReader = new JsonTextReader(stream))
+                {
+                    return (TConfig)_serializer.Deserialize(jsonReader);
+                }
+            }
+            catch (Exception e)
+            {
+                throw new ConfigFileLoadException(path, e);
             }
         }
 

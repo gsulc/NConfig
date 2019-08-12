@@ -1,5 +1,4 @@
-﻿using NConfig.Abstractions;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 
 namespace NConfig.Xml

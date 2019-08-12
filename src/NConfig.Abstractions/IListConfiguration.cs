@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace NConfig.Abstractions
+namespace NConfig
 {
     public interface IListConfiguration<TConfig>
         : IConfiguration<List<TConfig>>

@@ -1,4 +1,4 @@
-﻿using NConfig.Abstractions;
+﻿using System;
 using System.IO;
 using System.Xml.Serialization;
 
@@ -27,9 +27,16 @@ namespace NConfig.Xml
 
         public static TConfig Load(string filePath)
         {
-            using (var stream = new StreamReader(filePath))
+            try
             {
-                return (TConfig)_serializer.Deserialize(stream);
+                using (var stream = new StreamReader(filePath))
+                {
+                    return (TConfig)_serializer.Deserialize(stream);
+                }
+            }
+            catch (Exception)
+            {
+                throw new ConfigFileLoadException(filePath);
             }
         }
 

@@ -1,5 +1,4 @@
-﻿using NConfig.Abstractions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -29,22 +28,29 @@ namespace NConfig.Csv
 
         public List<TConfig> Load()
         {
-            var list = new List<TConfig>();
-            var lines = File.ReadAllLines(FilePath);
-            foreach (var line in lines)
+            try
             {
-                var elements = line.Split(',');
-                if (UsingHeader && line == lines.First())
+                var list = new List<TConfig>();
+                var lines = File.ReadAllLines(FilePath);
+                foreach (var line in lines)
                 {
-                    ParseHeader(line);
+                    var elements = line.Split(',');
+                    if (UsingHeader && line == lines.First())
+                    {
+                        ParseHeader(line);
+                    }
+                    else
+                    {
+                        var obj = CreateObject(elements);
+                        list.Add(obj);
+                    }
                 }
-                else
-                {
-                    var obj = CreateObject(elements);
-                    list.Add(obj);
-                }
+                return list;
             }
-            return list;
+            catch (Exception e)
+            {
+                throw new ConfigFileLoadException(FilePath, e);
+            }
         }
 
         // preserves the order of the properties in the file
