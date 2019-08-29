@@ -11,7 +11,7 @@ namespace NConfig.Xml
         {
         }
 
-        public new static XmlListFileConfiguration<TConfig> FromDirectory(string directory)
+        new public static XmlListFileConfiguration<TConfig> FromDirectory(string directory)
         {
             string path = Path.Combine(directory, $"{nameof(TConfig)}s.xml");
             return new XmlListFileConfiguration<TConfig>(path);

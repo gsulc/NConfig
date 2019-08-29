@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27428.2015
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NConfig.Xml", "NConfig.Xml\NConfig.Xml.csproj", "{0E24C1D7-E54F-4A59-B38E-B8055E0C0C64}"
 EndProject
@@ -17,7 +17,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\Unit
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NConfig.Abstractions", "NConfig.Abstractions\NConfig.Abstractions.csproj", "{D849E797-A141-4CC2-BFAF-C57A60926338}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NConfig.Csv", "NConfig.Csv\NConfig.Csv.csproj", "{281B72A1-C4EA-4A87-AA03-68B572B8E6D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NConfig.Csv", "NConfig.Csv\NConfig.Csv.csproj", "{281B72A1-C4EA-4A87-AA03-68B572B8E6D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NConfig.Yaml", "NConfig.Yaml\NConfig.Yaml.csproj", "{F1A63A78-4701-4699-AB72-1E56205E5F6F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +55,10 @@ Global
 		{281B72A1-C4EA-4A87-AA03-68B572B8E6D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{281B72A1-C4EA-4A87-AA03-68B572B8E6D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{281B72A1-C4EA-4A87-AA03-68B572B8E6D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1A63A78-4701-4699-AB72-1E56205E5F6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1A63A78-4701-4699-AB72-1E56205E5F6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1A63A78-4701-4699-AB72-1E56205E5F6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1A63A78-4701-4699-AB72-1E56205E5F6F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
