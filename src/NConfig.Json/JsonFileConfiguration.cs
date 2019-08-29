@@ -48,9 +48,16 @@ namespace NConfig.Json
 
         public static void Save(TConfig value, string path)
         {
-            using (var stream = new StreamWriter(path))
+            try
             {
-                _serializer.Serialize(stream, value);
+                using (var stream = new StreamWriter(path))
+                {
+                    _serializer.Serialize(stream, value);
+                }
+            }
+            catch (Exception e)
+            {
+                throw new ConfigFileSaveException(typeof(TConfig), path, e);
             }
         }
     }

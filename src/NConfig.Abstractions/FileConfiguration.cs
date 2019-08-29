@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace NConfig
 {
@@ -6,6 +7,8 @@ namespace NConfig
     {
         public FileConfiguration(string path)
         {
+            if (string.IsNullOrEmpty(path))
+                throw new ArgumentException($"The file path for type '{nameof(TConfig)}' was not specified.");
             FilePath = path;
         }
 

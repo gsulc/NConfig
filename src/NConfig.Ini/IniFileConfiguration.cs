@@ -43,7 +43,14 @@ namespace NConfig.Ini
 
         public static void Save(TConfig value, string path)
         {
-            _serializer.Serialize(value, path);
+            try
+            {
+                _serializer.Serialize(value, path);
+            }
+            catch (Exception e)
+            {
+                throw new ConfigFileSaveException(typeof(TConfig), path, e);
+            }
         }
     }
 }

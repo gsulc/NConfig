@@ -1,5 +1,4 @@
-﻿using NConfig.Abstractions;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 
 namespace NConfig.Json
@@ -12,7 +11,7 @@ namespace NConfig.Json
         {
         }
 
-        public new static JsonListFileConfiguration<TConfig> FromDirectory(string directory)
+        new public static JsonListFileConfiguration<TConfig> FromDirectory(string directory)
         {
             string path = Path.Combine(directory, $"{nameof(TConfig)}s.json");
             return new JsonListFileConfiguration<TConfig>(path);

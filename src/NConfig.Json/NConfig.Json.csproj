@@ -1,17 +1,17 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>net35;net45;netstandard2.0</TargetFrameworks>
     <Authors>Gordon Sulc</Authors>
     <Description>A simple, lightweight serialization facade for reading and writing Json files to and from plain-old csharp objects.</Description>
     <PackageTags>json;configuration;config;poco;serialization;deserialization</PackageTags>
-    <PackageReleaseNotes>beta</PackageReleaseNotes>
+    <PackageReleaseNotes>descriptive exceptions</PackageReleaseNotes>
     <RepositoryUrl>https://github.com/gsulc/NConfig</RepositoryUrl>
     <PackageProjectUrl>https://github.com/gsulc/NConfig</PackageProjectUrl>
     <Copyright>Gordon Sulc</Copyright>
     <PackageLicenseUrl>https://github.com/gsulc/NConfig/blob/master/LICENSE</PackageLicenseUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.5.1</Version>
+    <Version>0.5.2</Version>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>NConfigJsonKey.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>

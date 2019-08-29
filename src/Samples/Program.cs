@@ -1,4 +1,4 @@
-﻿using NConfig.Abstractions;
+﻿using NConfig;
 using NConfig.Csv;
 using NConfig.Ini;
 using System;

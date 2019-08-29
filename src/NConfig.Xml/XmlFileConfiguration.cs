@@ -47,9 +47,16 @@ namespace NConfig.Xml
 
         public static void Save(TConfig value, string filePath)
         {
-            using (var stream = new StreamWriter(filePath))
+            try
             {
-                _serializer.Serialize(stream, value);
+                using (var stream = new StreamWriter(filePath))
+                {
+                    _serializer.Serialize(stream, value);
+                }
+            }
+            catch (Exception e)
+            {
+                throw new ConfigFileSaveException(typeof(TConfig), filePath, e);
             }
         }
     }

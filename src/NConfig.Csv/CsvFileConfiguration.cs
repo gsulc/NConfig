@@ -81,12 +81,19 @@ namespace NConfig.Csv
 
         public void Save(List<TConfig> list)
         {
-            using (var stream = new StreamWriter(FullPath))
+            try
             {
-                if (UsingHeader)
-                    stream.WriteLine(GetHeader());
-                foreach (var item in list)
-                    stream.WriteLine(CreateItemLine(item));
+                using (var stream = new StreamWriter(FullPath))
+                {
+                    if (UsingHeader)
+                        stream.WriteLine(GetHeader());
+                    foreach (var item in list)
+                        stream.WriteLine(CreateItemLine(item));
+                }
+            }
+            catch (Exception e)
+            {
+                throw new ConfigFileSaveException(typeof(TConfig), FullPath, e);
             }
         }
 

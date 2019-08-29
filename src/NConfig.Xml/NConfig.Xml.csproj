@@ -6,12 +6,12 @@
     <Authors>Gordon Sulc</Authors>
     <PackageProjectUrl>https://github.com/gsulc/NConfig</PackageProjectUrl>
     <RepositoryUrl>https://github.com/gsulc/NConfig</RepositoryUrl>
-    <PackageReleaseNotes>beta</PackageReleaseNotes>
+    <PackageReleaseNotes>descriptive exceptions</PackageReleaseNotes>
     <Copyright>Gordon Sulc</Copyright>
-    <AssemblyVersion>0.5.1.0</AssemblyVersion>
-    <FileVersion>0.5.1.0</FileVersion>
+    <AssemblyVersion>0.5.2.0</AssemblyVersion>
+    <FileVersion>0.5.2.0</FileVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.5.1</Version>
+    <Version>0.5.2</Version>
     <Description>A simple, lightweight serialization facade for reading and writing XML files to and from plain-old csharp objects.</Description>
     <PackageTags>xml;configuration;config;poco;serialization;deserialization</PackageTags>
     <SignAssembly>true</SignAssembly>
