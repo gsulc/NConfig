@@ -12,7 +12,7 @@ namespace NConfig
 
         protected Stream Stream { get; private set; }
 
-        #region IDisposable Support
+        #region IDisposable
         private bool _disposed = false; // To detect redundant calls
 
         protected virtual void Dispose(bool disposing)
