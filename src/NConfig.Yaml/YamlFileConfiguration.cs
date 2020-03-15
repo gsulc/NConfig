@@ -43,7 +43,7 @@ namespace NConfig.Yaml
 
         public void Save(TConfig value)
         {
-            throw new NotImplementedException();
+            Save(value, FullPath);
         }
 
         public static void Save(TConfig value, string filePath)
